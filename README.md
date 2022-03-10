@@ -6,11 +6,11 @@
     *un component.ts ( ts pour type script).
 *Tout componet comprend un template HTML qui va déterminer le redu du component.
 *@component est un decorateur pour une classe dans angular.
-*ng : pour dire qu'il s'agit d'angular. c'est les préfixe de Next generation (lien:https://www.quora.com/What-does-ng-stands-for-in-all-directives-of-AngularJs).
+*ng : préfixe pour angular. What-does-ng-stands-for-in-all-directives-of-AngularJs).
 on peut trouver ng new : pour créer un nouvel espace de travail par exemple.
 *ngFor: permet de boucler sur une array et d 'injecter les élélments dans le DOM.
 *{{}}: est une interpolation qui permet de rendre une valeur ex: {{product.name}}
-* Dans product-list.component.html :<a [title="product.name + `details`"]>{{product.name}}</a> : permet  d'avoir le nom du produit comme un lien cliaquable
+*Dans product-list.component.html :<a [title="product.name + `details`"]>{{product.name}}</a> : permet  d'avoir le nom du produit comme un lien cliaquable
 [] permet de lier, par son attribut, le nom et son detail dans une expression modèle --> un pop qui apparait en passant la souris au dessus du nom du produit.
 *ngIf utilisé dans dans le 'product-list.component.html', est une directive (dans ce cas une condition if) utilisé dans un element Html  exemple: 
   <p *ngIf="product.description"> 
@@ -37,7 +37,7 @@ notify.emit().
 onNotify() comparable à share() dans le product.component-list.ts avec une alert window qui apparaitra au déclenchement du clique sur le bouton "Notify Me"
 *Pour mettre à jour le productListCmponent à partir de productAlertComponent, on attribut à  l'élment <app-product-alerts> </app-product-alerts> la methode onNotify().
 
-**Adding Navigation**
+
 *Toujours par la meme ligne de commande: ng generate component product-details --> généreune nouveau component product-details.
 *Dans app.module.ts, on rajoute des route avec des "path" (chemin).
 *dans le product-list.component.html: ajouter dans l'ancre un attribut [routerLink] qui permet de costomiser l'ancre.Il est composé d 'un segment fixe et d'un segment variable avec un id.==> apparition d 'un menu reherche
@@ -48,7 +48,21 @@ onNotify() comparable à share() dans le product.component-list.ts avec une aler
 *Dans le product-details component.ts: on récupère le  produit par la méthode get("productId"), puis rechercher le prduit qui correspond au l'Id par la méthode find() qui renvoie la valeur du prmier élement trouver. (source:https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/find ).
 *route.snapshot : permet d 'acceder au parametre route
 *Implemener un template avec les details valeur: du nom du produit , prix avec devise (currency pipes qui transforme le  prix en nombre en prix en une chaine de caractère) et produit avec description. on remarque l'utilisation de la condition ngIf afin d'afficher ou non le produit s'il existe.
-*pipes : est une fonction simple qui prend une certaine valeur input et rend en une valeur transformé. elle s'applique au date et au chaie de caractère par exemeple.
+*pipes : est une fonction simple qui prend une certaine valeur input et rend en une valeur transformé. elle s'applique au date et au chaie de caractère par exemeple.En template HTML on parle de pipes et est désignée (|)
+exemple : <h4>{{ product.price | currency }}</h4> --> permet de transformer product.price ( nombre ) vers une chaine de caractère.
+Remarque : ne pas confondre (|) presente dans un "component.ts" qui permet de choisir un type ou un autre type alternatif.
 
-**Managing DATA**
+*AppModule est un ensemble de composants d'une application , il en existe un seul par défaut dans le cas de notre exercie.
+    *Déclarations: définit la  liste des composant contenue dans un module.
+    *Exports: Définit la liste des composants pouvant être utilisés par les modules qui importent celui-ci.
+*htppClient: permet de réaliser des recherche depuis des API externe.
+*le fichier.json est dans assets.
+*pipeAsync prend le meme principe que fetch(à revoir)
+
+*@angular/forms: est un package pour les formulaires contenant un service formBuilder.
+*Le constructor() sert à injecter des dependances qui sont dans d'autres classe exemple: FormBuilder, cartService.
+*group(): est une méthode qui permet de rassembler les champs de saisie d 'un formulaire, en l 'appliquant sur la propriété checkoutForm du formulaire.
+*onSubmit() est une méthode qui fait appel à une autre metthode clearCart() du package cartService importé. 
+*On rattache le bouton crée dans le cart.component.html au formulaire en faisant appel à la propriété [formGroup]="checkoutForm" dans cartComponent.ts
+
 
